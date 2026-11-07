@@ -1,4 +1,5 @@
 {
+  "$schema": "https://antigravity.google/schemas/plugin-manifest.v1.json",
   "name": "campus-helpdesk",
   "displayName": "Campus Helpdesk",
   "version": "1.0.0",
@@ -10,4 +11,3 @@
     "What are the campus hostel gate rules and timings?"
   ]
 }
-

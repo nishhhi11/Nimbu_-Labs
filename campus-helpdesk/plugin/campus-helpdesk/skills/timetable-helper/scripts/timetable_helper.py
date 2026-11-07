@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-timetable_lookup.py
-Query utility for the Campus Helpdesk Timetable Helper skill.
-Loads mock timetable data and provides deterministic filtering and lookup.
+timetable_helper.py
+Deterministic query engine for campus timetable dataset.
+Sorts multi-day results chronologically by weekday (Monday-Friday) then start_time.
 """
 
 import csv
@@ -10,8 +10,17 @@ import sys
 from pathlib import Path
 from typing import List, Dict, Optional
 
-# Default dataset location relative to this script
 DEFAULT_CSV_PATH = Path(__file__).resolve().parent.parent / "references" / "mock_timetable.csv"
+
+DAY_ORDER = {
+    "monday": 1,
+    "tuesday": 2,
+    "wednesday": 3,
+    "thursday": 4,
+    "friday": 5,
+    "saturday": 6,
+    "sunday": 7
+}
 
 
 def load_timetable(csv_path: Optional[Path] = None) -> List[Dict[str, str]]:
@@ -53,8 +62,8 @@ def query_timetable(
             continue
         results.append(r)
 
-    # Sort results chronologically by start_time
-    results.sort(key=lambda x: x.get("start_time", "00:00"))
+    # Sort primarily by weekday order, secondarily by start_time
+    results.sort(key=lambda x: (DAY_ORDER.get(x.get("day", "").lower(), 99), x.get("start_time", "00:00")))
     return results
 
 
@@ -71,7 +80,8 @@ def format_results(results: List[Dict[str, str]]) -> str:
 
     for r in results:
         time_slot = f"{r.get('start_time')}-{r.get('end_time')}"
-        subj = f"{r.get('subject_code')} ({r.get('subject_name')[:18]}...)" if len(r.get('subject_name', '')) > 20 else f"{r.get('subject_code')} {r.get('subject_name')}"
+        subj_name = r.get('subject_name', '')
+        subj = f"{r.get('subject_code')} ({subj_name[:18]}...)" if len(subj_name) > 20 else f"{r.get('subject_code')} {subj_name}"
         lines.append(
             f"{r.get('batch', ''):<8} {r.get('day', ''):<10} {time_slot:<15} {subj:<28} {r.get('room', ''):<10} {r.get('faculty', '')}"
         )
@@ -84,7 +94,7 @@ def main():
     parser = argparse.ArgumentParser(description="Query campus timetable mock dataset.")
     parser.add_argument("--batch", type=str, help="Batch code, e.g., CS-A, CS-B")
     parser.add_argument("--day", type=str, help="Day of week, e.g., Monday, Tuesday")
-    parser.add_argument("--subject", type=str, help="Subject name or code, e.g., CS201 or Algorithms")
+    parser.add_argument("--subject", type=str, help="Subject name or code, e.g., CS201 or Operating Systems")
     parser.add_argument("--faculty", type=str, help="Faculty name, e.g., Raman")
     parser.add_argument("--room", type=str, help="Room/Lab name, e.g., 'Room 101'")
 
@@ -108,4 +118,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

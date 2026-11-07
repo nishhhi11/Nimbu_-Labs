@@ -1,7 +1,7 @@
 # Nimbus Campus Helpdesk Agent Toolchain
 
 AI Tools and Prompt Engineering Individual Assignment  
-**Student:** Nishi Chopda | **ID:** 150096725128 | **Program:** B.Tech CSE (Jeff Bezos)  
+**Student:** Nishi Chopda | **ID:** 150096725128 | **Program:** B.Tech CSE   
 **Environment:** Google Antigravity (macOS Darwin arm64)
 
 ---
