@@ -7,12 +7,23 @@ Exposes:
 Transport: stdio
 """
 
+import sys
+from pathlib import Path
+
+# Add project venv site-packages to sys.path so IDE linters and runtime find the MCP SDK
+VENV_PACKAGES = Path(__file__).resolve().parent / ".venv" / "lib" / "python3.14" / "site-packages"
+if VENV_PACKAGES.exists() and str(VENV_PACKAGES) not in sys.path:
+    sys.path.insert(0, str(VENV_PACKAGES))
+
 import csv
 import json
-from pathlib import Path
 from typing import List, Dict, Any
 
-from mcp.server.mcpserver import MCPServer
+try:
+    from mcp.server.mcpserver import MCPServer
+except ImportError:
+    # Fallback to local import if run with external Python
+    from mcp.server.mcpserver import MCPServer
 
 # Initialize MCPServer (Official MCP Python SDK v2)
 mcp = MCPServer("campus-helpdesk-mcp")
@@ -50,7 +61,6 @@ def get_timetable(batch: str, day: str) -> str:
         batch: Academic cohort identifier (e.g. 'CS-A', 'CS-B')
         day: Day of the week (e.g. 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
     """
-    # Strict argument type and value validation
     if not isinstance(batch, str) or not isinstance(day, str):
         return "Validation Error: 'batch' and 'day' arguments must be strings."
 
