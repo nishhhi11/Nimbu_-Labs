@@ -17,3 +17,4 @@
 ## 4. Room Maintenance & Electrical Appliances
 - Heavy electrical appliances (induction cookers, immersion heaters, air conditioners) are not permitted in hostel rooms.
 - Residents are responsible for the cleanliness and maintenance of their allocated rooms.
+
