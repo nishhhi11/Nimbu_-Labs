@@ -12,3 +12,4 @@ This dictionary defines each column in `mock_timetable.csv`, its data type, vali
 | `subject_name`| String | Full course title | Text (e.g. `Data Structures and Algorithms`, `Operating Systems`) | Descriptive course name presented in student responses. |
 | `faculty` | String | Name of assigned instructor | E.g. `Prof. Raman`, `Dr. Sen`, `Dr. Verma`, `Prof. Nair` | Faculty member conducting the lecture or lab. |
 | `room` | String | Designated physical space | E.g. `Room 101`, `Room 102`, `Lab 2` | Physical campus location where students must report. |
+
