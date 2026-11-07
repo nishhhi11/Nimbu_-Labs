@@ -2,5 +2,9 @@
   "python.defaultInterpreterPath": "${workspaceFolder}/campus-helpdesk/mcp-server/.venv/bin/python3",
   "python.analysis.extraPaths": [
     "${workspaceFolder}/campus-helpdesk/mcp-server/.venv/lib/python3.14/site-packages"
-  ]
+  ],
+  "python.linting.enabled": false,
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none"
+  }
 }

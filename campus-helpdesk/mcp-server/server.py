@@ -20,10 +20,10 @@ import json
 from typing import List, Dict, Any
 
 try:
-    from mcp.server.mcpserver import MCPServer
+    from mcp.server.mcpserver import MCPServer  # type: ignore
 except ImportError:
     # Fallback to local import if run with external Python
-    from mcp.server.mcpserver import MCPServer
+    from mcp.server.mcpserver import MCPServer  # type: ignore
 
 # Initialize MCPServer (Official MCP Python SDK v2)
 mcp = MCPServer("campus-helpdesk-mcp")
