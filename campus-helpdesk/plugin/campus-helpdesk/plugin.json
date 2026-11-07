@@ -1,0 +1,13 @@
+{
+  "name": "campus-helpdesk",
+  "displayName": "Campus Helpdesk",
+  "version": "1.0.0",
+  "description": "Campus helpdesk assistant for checking timetables, fee records, and hostel policies.",
+  "author": "Nimbus Labs",
+  "suggestedPrompts": [
+    "What classes does batch CS-A have on Monday?",
+    "Check fee balance for student ID 2024CS001",
+    "What are the campus hostel gate rules and timings?"
+  ]
+}
+

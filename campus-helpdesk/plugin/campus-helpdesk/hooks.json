@@ -1,0 +1,11 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "run_command",
+        "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/security_hook.py"
+      }
+    ]
+  }
+}
+

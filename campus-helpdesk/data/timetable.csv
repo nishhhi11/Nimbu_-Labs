@@ -1,0 +1,43 @@
+batch,day,start_time,end_time,subject_code,subject_name,faculty,room
+CS-A,Monday,09:00,10:00,CS201,Data Structures and Algorithms,Prof. Raman,Room 101
+CS-A,Monday,10:00,11:00,CS202,Database Management Systems,Dr. Sen,Room 102
+CS-A,Monday,11:15,12:15,CS203,Computer Networks,Prof. Kapoor,Room 101
+CS-A,Monday,13:00,14:00,CS204,Operating Systems,Dr. Verma,Room 105
+CS-A,Monday,14:00,16:00,CS205,DSA Lab,Prof. Raman,Lab 2
+CS-A,Tuesday,09:00,10:00,CS202,Database Management Systems,Dr. Sen,Room 102
+CS-A,Tuesday,10:00,11:00,CS201,Data Structures and Algorithms,Prof. Raman,Room 101
+CS-A,Tuesday,11:15,12:15,CS206,Software Engineering,Prof. Nair,Room 103
+CS-A,Tuesday,13:00,15:00,CS207,DBMS Lab,Dr. Sen,Lab 1
+CS-A,Wednesday,09:00,10:00,CS203,Computer Networks,Prof. Kapoor,Room 101
+CS-A,Wednesday,10:00,11:00,CS204,Operating Systems,Dr. Verma,Room 105
+CS-A,Wednesday,11:15,12:15,CS201,Data Structures and Algorithms,Prof. Raman,Room 101
+CS-A,Wednesday,13:00,14:00,CS206,Software Engineering,Prof. Nair,Room 103
+CS-A,Thursday,09:00,10:00,CS204,Operating Systems,Dr. Verma,Room 105
+CS-A,Thursday,10:00,11:00,CS203,Computer Networks,Prof. Kapoor,Room 101
+CS-A,Thursday,11:15,12:15,CS202,Database Management Systems,Dr. Sen,Room 102
+CS-A,Thursday,13:00,15:00,CS208,OS & Networks Lab,Dr. Verma,Lab 3
+CS-A,Friday,09:00,10:00,CS206,Software Engineering,Prof. Nair,Room 103
+CS-A,Friday,10:00,11:00,CS201,Data Structures and Algorithms,Prof. Raman,Room 101
+CS-A,Friday,11:15,12:15,CS204,Operating Systems,Dr. Verma,Room 105
+CS-A,Friday,13:00,14:00,CS209,Seminar / Tutorial,Prof. Nair,Room 103
+CS-B,Monday,09:00,10:00,CS202,Database Management Systems,Dr. Sen,Room 201
+CS-B,Monday,10:00,11:00,CS201,Data Structures and Algorithms,Prof. Raman,Room 202
+CS-B,Monday,11:15,12:15,CS204,Operating Systems,Dr. Verma,Room 201
+CS-B,Monday,13:00,15:00,CS207,DBMS Lab,Dr. Sen,Lab 1
+CS-B,Tuesday,09:00,10:00,CS203,Computer Networks,Prof. Kapoor,Room 201
+CS-B,Tuesday,10:00,11:00,CS204,Operating Systems,Dr. Verma,Room 201
+CS-B,Tuesday,11:15,12:15,CS201,Data Structures and Algorithms,Prof. Raman,Room 202
+CS-B,Tuesday,13:00,15:00,CS205,DSA Lab,Prof. Raman,Lab 2
+CS-B,Wednesday,09:00,10:00,CS206,Software Engineering,Prof. Nair,Room 203
+CS-B,Wednesday,10:00,11:00,CS202,Database Management Systems,Dr. Sen,Room 201
+CS-B,Wednesday,11:15,12:15,CS203,Computer Networks,Prof. Kapoor,Room 201
+CS-B,Wednesday,13:00,14:00,CS201,Data Structures and Algorithms,Prof. Raman,Room 202
+CS-B,Thursday,09:00,10:00,CS201,Data Structures and Algorithms,Prof. Raman,Room 202
+CS-B,Thursday,10:00,11:00,CS206,Software Engineering,Prof. Nair,Room 203
+CS-B,Thursday,11:15,12:15,CS204,Operating Systems,Dr. Verma,Room 201
+CS-B,Thursday,13:00,14:00,CS203,Computer Networks,Prof. Kapoor,Room 201
+CS-B,Friday,09:00,10:00,CS204,Operating Systems,Dr. Verma,Room 201
+CS-B,Friday,10:00,11:00,CS203,Computer Networks,Prof. Kapoor,Room 201
+CS-B,Friday,11:15,12:15,CS202,Database Management Systems,Dr. Sen,Room 201
+CS-B,Friday,13:00,15:00,CS208,OS & Networks Lab,Dr. Verma,Lab 3
+
