@@ -1,0 +1,19 @@
+=== GIT WORKTREE LIST ===
+/Users/nishi/AI_Assignment  9cb340f [main]
+/Users/nishi/wt-hook-path   cc9e403 [bugfix/hook-path]
+/Users/nishi/wt-mcp-server  0115f69 [feature/mcp-server]
+/Users/nishi/wt-skill-tests 0802486 [feature/skill-tests]
+
+=== GIT COMMIT GRAPH ===
+* 9cb340f fix: implement official MCP SDK, refactor Antigravity hook & slash command, correct RFC 9999 audit, and update Nimbus_Labs.docx
+* c208b43 feat: complete Nimbus Labs campus helpdesk toolchain, skill, plugin, and mcp server
+* 3b54f95 docs: update Word submission document with full audit and test evidence
+* d1da49f feat(skill): add progressive disclosure files and verify Part A, B, C rubric
+| *   0802486 Merge branch 'bugfix/hook-path' into feature/skill-tests: resolve README conflict
+| |\  
+| | * cc9e403 docs: add hook path notes in README
+| |/  
+|/|   
+| * 3b77f9e docs: add test notes in README
+|/  
+* 0115f69 Initial commit: campus helpdesk skill, plugin, and mcp server

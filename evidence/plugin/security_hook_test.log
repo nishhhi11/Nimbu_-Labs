@@ -1,0 +1,4 @@
+--- Safe command test (allowed) ---
+{"decision": "allow"}
+--- Hazardous command test (denied via JSON with code 0) ---
+{"decision": "deny", "reason": "[SECURITY POLICY VIOLATION] Access denied by campus-helpdesk security hook: Hazardous path or token pattern detected: '/etc'"}

@@ -1,0 +1,111 @@
+=== INITIALIZE ===
+Server Info: name='campus-helpdesk-mcp' title=None version='' description=None website_url=None icons=None
+Protocol Version: 2025-11-25
+
+=== TOOLS/LIST ===
+- get_timetable: Retrieve scheduled classes, lecture timings, rooms, and faculty for an academic batch and day.
+
+Args:
+    batch: Academic cohort identifier (e.g. 'CS-A', 'CS-B')
+    day: Day of the week (e.g. 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday')
+  Input Schema: {'properties': {'batch': {'title': 'Batch', 'type': 'string'}, 'day': {'title': 'Day', 'type': 'string'}}, 'required': ['batch', 'day'], 'type': 'object', 'title': 'get_timetableArguments'}
+- get_fee_status: Retrieve financial payment record, tuition fees, paid amount, and pending balance for a fictional student ID.
+
+Args:
+    student_id: Fictional student identifier (e.g. '2024CS001', '2024CS002', '2024CS015')
+  Input Schema: {'properties': {'student_id': {'title': 'Student Id', 'type': 'string'}}, 'required': ['student_id'], 'type': 'object', 'title': 'get_fee_statusArguments'}
+
+=== TOOLS/CALL (get_timetable) ===
+[
+  {
+    "batch": "CS-A",
+    "day": "Monday",
+    "start_time": "09:00",
+    "end_time": "10:00",
+    "subject_code": "CS201",
+    "subject_name": "Data Structures and Algorithms",
+    "faculty": "Prof. Raman",
+    "room": "Room 101"
+  },
+  {
+    "batch": "CS-A",
+    "day": "Monday",
+    "start_time": "10:00",
+    "end_time": "11:00",
+    "subject_code": "CS202",
+    "subject_name": "Database Management Systems",
+    "faculty": "Dr. Sen",
+    "room": "Room 102"
+  },
+  {
+    "batch": "CS-A",
+    "day": "Monday",
+    "start_time": "11:15",
+    "end_time": "12:15",
+    "subject_code": "CS203",
+    "subject_name": "Computer Networks",
+    "faculty": "Prof. Kapoor",
+    "room": "Room 101"
+  },
+  {
+    "batch": "CS-A",
+    "day": "Monday",
+    "start_time": "13:00",
+    "end_time": "14:00",
+    "subject_code": "CS204",
+    "subject_name": "Operating Systems",
+    "faculty": "Dr. Verma",
+    "room": "Room 105"
+  },
+  {
+    "batch": "CS-A",
+    "day": "Monday",
+    "start_time": "14:00",
+    "end_time": "16:00",
+    "subject_code": "CS205",
+    "subject_name": "DSA Lab",
+    "faculty": "Prof. Raman",
+    "room": "Lab 2"
+  }
+]
+
+=== TOOLS/CALL (get_fee_status) ===
+{
+  "student_name": "Aarav Sharma",
+  "batch": "CS-A",
+  "program": "B.Tech Computer Science",
+  "total_fees": 125000,
+  "paid_amount": 125000,
+  "pending_balance": 0,
+  "payment_status": "Paid",
+  "due_date": "N/A"
+}
+
+=== RESOURCES/READ (campus://hostel/rules) ===
+# Nimbus Campus Hostel Rules & Guidelines
+
+## 1. Gate Timings & Curfew
+- **Main Hostel Gate Closing Time**: 22:00 (10:00 PM) on weekdays (Sunday to Thursday).
+- **Weekend Gate Closing Time**: 23:00 (11:00 PM) on Friday and Saturday.
+- Late entries without prior written approval from the Warden will incur disciplinary action.
+
+## 2. Visitor Regulations
+- Visiting hours: 16:00 to 19:00 only, in designated Common Areas.
+- Outside guests are strictly not permitted inside individual hostel rooms.
+- Overnight stay of non-residents is strictly prohibited.
+
+## 3. Quiet Hours & Conduct
+- **Quiet Hours**: 23:00 to 06:00 every day. Playing loud music or creating disturbances during quiet hours is forbidden.
+- Possession or consumption of alcohol, tobacco, or banned substances on campus premises is strictly banned and results in immediate expulsion.
+
+## 4. Room Maintenance & Electrical Appliances
+- Heavy electrical appliances (induction cookers, immersion heaters, air conditioners) are not permitted in hostel rooms.
+- Residents are responsible for the cleanliness and maintenance of their allocated rooms.
+
+
+
+=== FAILURE CASE (Invalid day) ===
+Validation Error: Invalid day 'Funday'. Classes run Monday through Friday.
+
+=== FAILURE CASE (Unknown student) ===
+Error: Student record 'UNKNOWN' not found. Fictional fee information cannot be fabricated.

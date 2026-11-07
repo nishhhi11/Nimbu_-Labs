@@ -1,0 +1,33 @@
+=== TEST 1: CS-A Monday Timetable ===
+Found 5 matching class(es):
+---------------------------------------------------------------------------
+Batch    Day        Time            Subject                      Room       Faculty
+---------------------------------------------------------------------------
+CS-A     Monday     09:00-10:00     CS201 (Data Structures an...) Room 101   Prof. Raman
+CS-A     Monday     10:00-11:00     CS202 (Database Managemen...) Room 102   Dr. Sen
+CS-A     Monday     11:15-12:15     CS203 Computer Networks      Room 101   Prof. Kapoor
+CS-A     Monday     13:00-14:00     CS204 Operating Systems      Room 105   Dr. Verma
+CS-A     Monday     14:00-16:00     CS205 DSA Lab                Lab 2      Prof. Raman
+
+=== TEST 2: Operating Systems Multi-day ===
+Found 4 matching class(es):
+---------------------------------------------------------------------------
+Batch    Day        Time            Subject                      Room       Faculty
+---------------------------------------------------------------------------
+CS-A     Monday     13:00-14:00     CS204 Operating Systems      Room 105   Dr. Verma
+CS-A     Wednesday  10:00-11:00     CS204 Operating Systems      Room 105   Dr. Verma
+CS-A     Thursday   09:00-10:00     CS204 Operating Systems      Room 105   Dr. Verma
+CS-A     Friday     11:15-12:15     CS204 Operating Systems      Room 105   Dr. Verma
+
+=== TEST 3: CS-B Wednesday Timetable ===
+Found 4 matching class(es):
+---------------------------------------------------------------------------
+Batch    Day        Time            Subject                      Room       Faculty
+---------------------------------------------------------------------------
+CS-B     Wednesday  09:00-10:00     CS206 Software Engineering   Room 203   Prof. Nair
+CS-B     Wednesday  10:00-11:00     CS202 (Database Managemen...) Room 201   Dr. Sen
+CS-B     Wednesday  11:15-12:15     CS203 Computer Networks      Room 201   Prof. Kapoor
+CS-B     Wednesday  13:00-14:00     CS201 (Data Structures an...) Room 202   Prof. Raman
+
+=== TEST 7: Adversarial Nonexistent Subject ===
+No matching timetable records found.
