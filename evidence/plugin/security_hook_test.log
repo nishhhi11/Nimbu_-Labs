@@ -1,4 +1,141 @@
---- Safe command test (allowed) ---
-{"decision": "allow"}
---- Hazardous command test (denied via JSON with code 0) ---
-{"decision": "deny", "reason": "[SECURITY POLICY VIOLATION] Access denied by campus-helpdesk security hook: Hazardous path or token pattern detected: '/etc'"}
+================================================================================
+PART C: ANTIGRAVITY PLUGIN VERIFICATION AND LIFECYCLE EVIDENCE
+Date: 2026-11-07T19:53:00+05:30
+Environment: Google Antigravity / macOS (Darwin arm64)
+CLI: /Users/nishi/.gemini/bin/agy (version 1.5.3)
+Target Plugin: campus-helpdesk/plugin/campus-helpdesk/
+================================================================================
+
+1. STRICT PLUGIN VALIDATION
+Command: agy plugin validate --strict /Users/nishi/AI_Assignment/campus-helpdesk/plugin/campus-helpdesk
+Output:
+Validating campus-helpdesk (/Users/nishi/AI_Assignment/campus-helpdesk/plugin/campus-helpdesk/plugin.json)
+
+  skills 2 · agents 0 · rules 0 · hooks 1 · mcpServers 1 · sidecars 0
+
+✔ Validation passed
+
+
+2. LOCAL PLUGIN INSTALLATION
+Command: agy plugin install /Users/nishi/AI_Assignment/campus-helpdesk/plugin/campus-helpdesk
+Output:
+  [ok]    campus-helpdesk
+          ✔ skills      : 2 installed (timetable, timetable-helper)
+          ✔ mcpServers  : 1 installed (campus-mcp)
+          ✔ hooks       : 1 installed (campus-security-guard)
+          Installed to /Users/nishi/.gemini/config/plugins/campus-helpdesk
+
+
+3. DISCOVERY & RECOGNITION (CLI)
+Command: agy plugin list
+Output:
+Installed plugins:
+- campus-helpdesk (enabled, 1.0.0)
+    Source:     antigravity
+    Components: 2 skills, 1 MCP server, 1 hook
+
+Command: agy plugin list --json
+Output (excerpt):
+  {
+    "name": "campus-helpdesk",
+    "enabled": true,
+    "version": "1.0.0",
+    "source": "antigravity",
+    "path": "/Users/nishi/.gemini/config/plugins/campus-helpdesk",
+    "skills": [
+      "timetable",
+      "timetable-helper"
+    ],
+    "mcpServers": [
+      "campus-mcp"
+    ],
+    "hooks": [
+      "campus-security-guard"
+    ]
+  }
+
+
+4. LANGUAGE SERVER REGISTRATION (GetAllPlugins RPC)
+Endpoint: http://localhost:5387/exa.language_server_pb.LanguageServerService/GetAllPlugins
+Output:
+  - Name: campus-helpdesk
+  - Directory: campus-helpdesk
+  - Disabled: false
+  - isGlobal: true
+  - Discovered Skills: ["timetable", "timetable-helper"]
+  - Hooks Recognized: true (campus-security-guard: PreToolUse on run_command)
+  - MCP Server Recognized: campus-helpdesk_campus-mcp
+    * Command: python3
+    * Args: ["/Users/nishi/.gemini/config/plugins/campus-helpdesk/mcp-server/server.py"]
+    * Env: {"PYTHONPATH": "/Users/nishi/.gemini/config/plugins/campus-helpdesk/mcp-server/.venv/lib/python3.14/site-packages"}
+    * Cwd: /Users/nishi/.gemini/config/plugins/campus-helpdesk
+
+
+5. SECURITY HOOK EXECUTION (Documented PreToolUse Payloads)
+Script: /Users/nishi/.gemini/config/plugins/campus-helpdesk/hooks/security_hook.py
+
+Test A (Harmless Tool Call):
+Input (stdin):
+{
+  "conversationId": "cee912b5-3485-4bef-a903-5451f681b33f",
+  "stepIdx": 50,
+  "toolCall": {
+    "name": "run_command",
+    "args": {"CommandLine": "ls -la"}
+  }
+}
+Exit Code: 0
+Stdout: {"decision": "allow"}
+
+Test B (Harmless Benign Words 'password' / 'token'):
+Input (stdin):
+{
+  "conversationId": "cee912b5-3485-4bef-a903-5451f681b33f",
+  "stepIdx": 51,
+  "toolCall": {
+    "name": "run_command",
+    "args": {"CommandLine": "echo 'Reset password with token' > info.txt"}
+  }
+}
+Exit Code: 0
+Stdout: {"decision": "allow"}
+
+Test C (Genuinely Dangerous Command):
+Input (stdin):
+{
+  "conversationId": "cee912b5-3485-4bef-a903-5451f681b33f",
+  "stepIdx": 52,
+  "toolCall": {
+    "name": "run_command",
+    "args": {"CommandLine": "rm -rf /"}
+  }
+}
+Exit Code: 0
+Stdout:
+{"decision": "deny", "reason": "[SECURITY POLICY VIOLATION] Access denied by campus-helpdesk security hook: Potentially destructive system command detected matching pattern: \\brm\\s+-[a-zA-Z]*r[a-zA-Z]*f\\b"}
+
+Test D (Sensitive Path Traversal):
+Input (stdin):
+{
+  "conversationId": "cee912b5-3485-4bef-a903-5451f681b33f",
+  "stepIdx": 53,
+  "toolCall": {
+    "name": "run_command",
+    "args": {"CommandLine": "cat /etc/shadow"}
+  }
+}
+Exit Code: 0
+Stdout:
+{"decision": "deny", "reason": "[SECURITY POLICY VIOLATION] Access denied by campus-helpdesk security hook: Access to sensitive path or traversal detected matching pattern: /etc/(?:shadow|passwd|sudoers)"}
+
+
+6. UNINSTALLATION & CLEANUP
+Command: agy plugin uninstall campus-helpdesk
+Output:
+Uninstalled plugin "campus-helpdesk"
+
+Verification via agy plugin list:
+campus-helpdesk is absent from installed plugins list.
+
+Verification via GetAllPlugins RPC:
+`[.plugins[] | select(.name=="campus-helpdesk")]` returns `[]`.

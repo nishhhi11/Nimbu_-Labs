@@ -1,9 +1,10 @@
 {
-  "$schema": "https://antigravity.google/schemas/plugin-manifest.v1.json",
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
   "name": "campus-helpdesk",
   "displayName": "Campus Helpdesk",
   "version": "1.0.0",
   "description": "Campus helpdesk assistant for checking timetables, fee records, and hostel policies.",
+  "logo": "assets/logo.svg",
   "author": "Nimbus Labs",
   "suggestedPrompts": [
     "What classes does batch CS-A have on Monday?",

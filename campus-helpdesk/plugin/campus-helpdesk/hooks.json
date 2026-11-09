@@ -1,11 +1,16 @@
 {
-  "hooks": {
+  "campus-security-guard": {
+    "enabled": true,
     "PreToolUse": [
       {
         "matcher": "run_command",
-        "command": "python3 ${CLAUDE_PLUGIN_ROOT}/hooks/security_hook.py"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 ./hooks/security_hook.py"
+          }
+        ]
       }
     ]
   }
 }
-

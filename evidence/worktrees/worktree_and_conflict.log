@@ -1,19 +1,40 @@
 === GIT WORKTREE LIST ===
-/Users/nishi/AI_Assignment  9cb340f [main]
+Command: git worktree list
+Output:
+/Users/nishi/AI_Assignment  08f1d8a [main]
 /Users/nishi/wt-hook-path   cc9e403 [bugfix/hook-path]
 /Users/nishi/wt-mcp-server  0115f69 [feature/mcp-server]
 /Users/nishi/wt-skill-tests 0802486 [feature/skill-tests]
 
+=== GENUINE MERGE CONFLICT EVIDENCE ===
+Branches: feature/skill-tests and bugfix/hook-path
+Conflicting file: README.md
+Conflict markers captured during git merge bugfix/hook-path:
+<<<<<<< HEAD
+# Feature branch updates for testing
+=======
+# Bugfix branch updates for hook validation
+>>>>>>> bugfix/hook-path
+
+Resolution:
+README.md was edited manually to combine notes from both branches, staged with 'git add README.md', and committed as merge commit 0802486.
+
 === GIT COMMIT GRAPH ===
+Command: git log --graph --oneline --all -n 12
+Output:
+* 08f1d8a (HEAD -> main, origin/main) fix: resolve MCP test schema attribute and verify all tests pass
+* 01a27ea fix: resolve MCP test schema attribute and verify all tests pass
+* 451b076 fix: resolve MCP test schema attribute and verify all tests pass
+* 54e8353 fix: resolve MCP test schema attribute and verify all tests pass
 * 9cb340f fix: implement official MCP SDK, refactor Antigravity hook & slash command, correct RFC 9999 audit, and update Nimbus_Labs.docx
 * c208b43 feat: complete Nimbus Labs campus helpdesk toolchain, skill, plugin, and mcp server
 * 3b54f95 docs: update Word submission document with full audit and test evidence
 * d1da49f feat(skill): add progressive disclosure files and verify Part A, B, C rubric
-| *   0802486 Merge branch 'bugfix/hook-path' into feature/skill-tests: resolve README conflict
+| *   0802486 (feature/skill-tests) Merge branch 'bugfix/hook-path' into feature/skill-tests: resolve README conflict
 | |\  
-| | * cc9e403 docs: add hook path notes in README
+| | * cc9e403 (bugfix/hook-path) docs: add hook path notes in README
 | |/  
 |/|   
 | * 3b77f9e docs: add test notes in README
 |/  
-* 0115f69 Initial commit: campus helpdesk skill, plugin, and mcp server
+* 0115f69 (feature/mcp-server) Initial commit: campus helpdesk skill, plugin, and mcp server

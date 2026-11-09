@@ -1,11 +1,13 @@
 {
   "mcpServers": {
     "campus-mcp": {
-      "command": "${PLUGIN_ROOT}/mcp-server/.venv/bin/python3",
+      "command": "python3",
       "args": [
         "${PLUGIN_ROOT}/mcp-server/server.py"
       ],
-      "env": {}
+      "env": {
+        "PYTHONPATH": "${PLUGIN_ROOT}/mcp-server/.venv/lib/python3.14/site-packages"
+      }
     }
   }
 }

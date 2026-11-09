@@ -1,4 +1,5 @@
-=== TEST 1: CS-A Monday Timetable ===
+=== TEST 1 (Positive 1): CS-A Monday Timetable ===
+Command: python3 campus-helpdesk/skills/timetable-helper/scripts/timetable_helper.py --batch CS-A --day Monday
 Found 5 matching class(es):
 ---------------------------------------------------------------------------
 Batch    Day        Time            Subject                      Room       Faculty
@@ -9,7 +10,9 @@ CS-A     Monday     11:15-12:15     CS203 Computer Networks      Room 101   Prof
 CS-A     Monday     13:00-14:00     CS204 Operating Systems      Room 105   Dr. Verma
 CS-A     Monday     14:00-16:00     CS205 DSA Lab                Lab 2      Prof. Raman
 
-=== TEST 2: Operating Systems Multi-day ===
+=== TEST 2 (Positive 2): Operating Systems Exact Subject Count (Batch CS-A) ===
+Command: python3 campus-helpdesk/skills/timetable-helper/scripts/timetable_helper.py --subject "Operating Systems" --batch CS-A
+Note: Matches only exact Operating Systems (CS204); does not include OS & Networks Lab.
 Found 4 matching class(es):
 ---------------------------------------------------------------------------
 Batch    Day        Time            Subject                      Room       Faculty
@@ -19,7 +22,8 @@ CS-A     Wednesday  10:00-11:00     CS204 Operating Systems      Room 105   Dr. 
 CS-A     Thursday   09:00-10:00     CS204 Operating Systems      Room 105   Dr. Verma
 CS-A     Friday     11:15-12:15     CS204 Operating Systems      Room 105   Dr. Verma
 
-=== TEST 3: CS-B Wednesday Timetable ===
+=== TEST 3 (Positive 3): CS-B Wednesday Timetable ===
+Command: python3 campus-helpdesk/skills/timetable-helper/scripts/timetable_helper.py --batch CS-B --day Wednesday
 Found 4 matching class(es):
 ---------------------------------------------------------------------------
 Batch    Day        Time            Subject                      Room       Faculty
@@ -29,5 +33,27 @@ CS-B     Wednesday  10:00-11:00     CS202 (Database Managemen...) Room 201   Dr.
 CS-B     Wednesday  11:15-12:15     CS203 Computer Networks      Room 201   Prof. Kapoor
 CS-B     Wednesday  13:00-14:00     CS201 (Data Structures an...) Room 202   Prof. Raman
 
-=== TEST 7: Adversarial Nonexistent Subject ===
+=== TEST 4 (Negative 1): Non-instructional Weekend Day (Saturday) ===
+Command: python3 campus-helpdesk/skills/timetable-helper/scripts/timetable_helper.py --day Saturday
+No matching timetable records found.
+
+=== TEST 5 (Negative 2): Nonexistent Cohort / Batch (CS-X) ===
+Command: python3 campus-helpdesk/skills/timetable-helper/scripts/timetable_helper.py --batch CS-X
+No matching timetable records found.
+
+=== TEST 6 (Ambiguous Query): Subject Query Without Batch/Day ('Database') ===
+Command: python3 campus-helpdesk/skills/timetable-helper/scripts/timetable_helper.py --subject "Database"
+Found 6 matching class(es):
+---------------------------------------------------------------------------
+Batch    Day        Time            Subject                      Room       Faculty
+---------------------------------------------------------------------------
+CS-B     Monday     09:00-10:00     CS202 (Database Managemen...) Room 201   Dr. Sen
+CS-A     Monday     10:00-11:00     CS202 (Database Managemen...) Room 102   Dr. Sen
+CS-A     Tuesday    09:00-10:00     CS202 (Database Managemen...) Room 102   Dr. Sen
+CS-B     Wednesday  10:00-11:00     CS202 (Database Managemen...) Room 201   Dr. Sen
+CS-A     Thursday   11:15-12:15     CS202 (Database Managemen...) Room 102   Dr. Sen
+CS-B     Friday     11:15-12:15     CS202 (Database Managemen...) Room 201   Dr. Sen
+
+=== TEST 7 (Adversarial Query): Prompt Injection / Fabricated Subject ('Quantum Computing') ===
+Command: python3 campus-helpdesk/skills/timetable-helper/scripts/timetable_helper.py --subject "Quantum Computing"
 No matching timetable records found.
