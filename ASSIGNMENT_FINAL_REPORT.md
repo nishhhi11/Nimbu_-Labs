@@ -123,7 +123,7 @@ The `campus-helpdesk` plugin bundles the timetable Skill, `/timetable` slash-inv
 ```text
 campus-helpdesk/plugin/campus-helpdesk/
 ├── plugin.json               # Plugin manifest metadata (name, displayName, logo, suggestedPrompts)
-├── mcp_config.json           # Stdio MCP configuration (runtime path noted in Part D1)
+├── mcp_config.json           # Stdio MCP configuration (/bin/sh wrapper invoking .venv/bin/python)
 ├── hooks.json                # PreToolUse security hook mapping
 ├── README.md                 # Setup, configuration, and testing guide
 ├── assets/
@@ -249,8 +249,24 @@ The following actions were recorded using the Antigravity CLI (`/Users/nishi/.ge
   2. `get_fee_status(student_id: str) -> str`
 - **Resource Exposed:**
   - `campus://hostel/rules` (`mime_type="text/markdown"`)
-- **Data/resource paths:** `server.py` resolves the data and resource directories using `${PLUGIN_ROOT}` where available and local relative-path fallbacks.
-- **Runtime dependency configuration:** The submitted `mcp_config.json` still sets `PYTHONPATH` to `${PLUGIN_ROOT}/mcp-server/.venv/lib/python3.14/site-packages`. This is environment-specific and assumes that this virtual environment exists at that location. Therefore, the server's data-path resolution is more portable than its Python dependency configuration. A clean installation on another machine has not been established by this evidence.
+- **Data/resource paths:** `server.py` resolves the data and resource directories using `${PLUGIN_ROOT}` where available, with local relative-path fallbacks.
+- **Runtime interpreter and configuration:** In `campus-helpdesk/plugin/campus-helpdesk/mcp_config.json`, the server is configured as follows:
+  ```json
+  {
+    "mcpServers": {
+      "campus-mcp": {
+        "command": "/bin/sh",
+        "args": [
+          "-c",
+          "exec \"${PLUGIN_ROOT}/mcp-server/.venv/bin/python\" \"${PLUGIN_ROOT}/mcp-server/server.py\""
+        ]
+      }
+    }
+  }
+  ```
+  - **Interpreter execution:** The `command` is `/bin/sh` and `args` invoke `exec` with the virtual environment Python interpreter (`.venv/bin/python`, Python 3.14.8). This ensures the server executes within the isolated environment where the official MCP SDK and dependencies (`mcp`, `anyio`, `pydantic`) are installed, bypassing the system Python which lacks the `mcp` module.
+  - **Variable expansion in Antigravity:** `${PLUGIN_ROOT}` is used strictly within the `args` array because Antigravity's plugin engine expands `${PLUGIN_ROOT}` and `${PLUGIN_DATA}` in `args`, `env`, and `cwd`, but not in `command`.
+  - **Validation & End-to-End Verification:** Strict plugin validation (`agy plugin validate --strict`) passed with zero warnings. Direct end-to-end stdio testing with an asynchronous MCP client verified the complete protocol lifecycle: successful protocol initialization (`2024-11-05`), listing and execution of both tools (`get_timetable`, `get_fee_status`), and retrieval of the hostel rules resource (`campus://hostel/rules`).
 
 ### D2. Protocol Negotiation & Test Evidence
 
